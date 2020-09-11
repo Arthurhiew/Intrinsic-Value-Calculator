@@ -8,30 +8,29 @@ function getValue(inputID){
 
 //Discount rate
 function getDiscountRate(beta){
-     var discount_rate = 0
     if(beta < 0.8)
-        discount_rate = 0.05
+        var discount_rate = 0.05
     else if (beta >= 0.8 && beta <= 1)
-        discount_rate = 0.06
+        var discount_rate = 0.06
     else if(beta > 1 && beta <=1.1 )
-        discount_rate = 0.065
+        var discount_rate = 0.065
     else if(beta >1.1 && beta <=1.2 )
-        discount_rate = 0.07
+        var discount_rate = 0.07
     else if(beta >1.2 && beta <=1.3 )
-        discount_rate = 0.075
+        var discount_rate = 0.075
     else if(beta >1.3 && beta <=1.4 )
-        discount_rate=0.08
+        var discount_rate=0.08
     else if(beta >1.4 && beta <=1.5 )
-        discount_rate = 0.085
+        var discount_rate = 0.085
     else if(beta >= 1.6)
-        discount_rate = 0.09
+        var discount_rate = 0.09
     
-    return discount_rate
+    return parseFloat(discount_rate)
 
 }
 
 function percentToDecimal(input){
-    return input/100+1
+    return parseFloat(input/100+1)
 }
 
 
@@ -41,22 +40,24 @@ function getPV(current_cashflow, growth_rate_1, growth_rate_2, discount_rate){
     var temp = current_cashflow
     var sum = 0
     for(var i = 0; i < 10; i++){
+        var discountFactor = 1 / (1 + discount_rate) ** (i + 1)
         //Before Discount
-        if(i < 4)
+        if(i < 3)
             temp = temp * growth_rate_1 
         else
             temp = temp * growth_rate_2 
-
+        // console.log("temp", i+1, ": ", temp);
         //After discount
-        sum += temp * (1 / (1 + discount_rate) ** (i + 1))
-
+        sum += temp * discountFactor
+    //     console.log("discount", i+1, ": ", discountFactor);
+    //     console.log("sum ",i+1, ": ",sum)
     }
     pv = sum
     return pv
 }
 
 
-// console.log(getPV(27956, 1.222, 1.222, 0.05))
+console.log(getPV(80.01, 1.1269, 1.11, 0.075))
 
 
 //Intrinsic Valye before cash / debt
@@ -111,42 +112,37 @@ function getFinalIntrinsicValue(ldps, pdps, intrinsic_value){
 // var update = document.querySelector(".input").forEach(update =>{
 document.querySelectorAll(".input").forEach(update =>{
     update.addEventListener("change", (event) => {
-    // var cashflow = parseInt(document.getElementById("input-current").value)
-    //   const result = document.querySelector("#result-pv");
-    
-    //   result.textContent = `${event.target.value}`;
-    
-    var curCashFlow = parseInt(document.getElementById("input-current").value)
-    // console.log(curCashFlow)
-    //get input
-    var totalDebt = parseInt(document.getElementById("input-debt").value)
-    var cashAndInvestment = parseInt(document.getElementById("input-cash").value)
-    var growth1 = percentToDecimal(parseInt(document.getElementById("input-growth-1")).value)
-    var growth2 = percentToDecimal(parseInt(document.getElementById("input-growth-2")).value)
-    var numShare = parseInt(document.getElementById("input-share").value)
-    var discountRate= getDiscountRate(parseInt(document.getElementById("input-discount")))
+        // console.log(curCashFlow)
+        //get input
+    var curCashFlow = parseFloat(document.getElementById("input-current").value)
+    var totalDebt = parseFloat(document.getElementById("input-debt").value);
+    var cashAndInvestment = parseFloat(document.getElementById("input-cash").value);
+    var growth1 = percentToDecimal(parseFloat(document.getElementById("input-growth-1").value))
+    var growth2 = percentToDecimal(parseFloat(document.getElementById("input-growth-2").value));
+    var numShare = parseFloat(document.getElementById("input-share").value);
+    var discountRate =getDiscountRate(parseFloat(document.getElementById("input-discount").value))
+    console.log(curCashFlow, totalDebt, cashAndInvestment, growth1, growth2, numShare, discountRate)
 
     //calculate
     var pv = getPV(curCashFlow, growth1, growth2, discountRate);
     var result_pv = document.querySelector("#result-pv");
-    result_pv.textContent = `${event.target.value}`;
-
+    result_pv.textContent = pv;
 
     var intrinsicValue = getIntrinsicValue(pv, numShare);
     var result_value = document.querySelector("#result-value");
-    result_value.textContent = `${event.target.value}`;
+    result_value.textContent = intrinsicValue  
 
     var ldps = getLessDebtPerShare(totalDebt, numShare);
     var result_ldps = document.querySelector("#result-less");
-    result_ldps.textContent = `${event.target.value}`;
+    result_ldps.textContent = ldps;
 
     var pdps = getPlusDebtPerShare(cashAndInvestment, numShare);
     var result_pdps = document.querySelector("#result-plus");
-    result_pdps.textContent = `${event.target.value}`;
+    result_pdps.textContent = pdps;
 
     var final = getFinalIntrinsicValue(ldps, pdps, intrinsicValue);
     var result_final = document.querySelector("#result-final");
-    result_final.textContent = `${event.target.value}`;
+    result_final.textContent = final;
     // console.log("cashflowupdate, cashflow")
 
 
@@ -160,5 +156,3 @@ document.querySelectorAll(".input").forEach(update =>{
 
 
 
-
-console.log(percentToDecimal(12.69))
