@@ -20,45 +20,58 @@
         </div>
         <div class="body-calculator">
             <p>Name of Stock</p>
-            <input type="text", id="input-name" placeholder="">
+            <input class="input" type="text", id="input-name" placeholder="">
+
             <p>Stock Symbol</p>
-            <input type="text" id="input-symbol" placeholder="">
+            <input class="input" type="text" id="input-symbol" placeholder="">
+
             <p>Operating CashFlow (Current)</p>
-            <input type="text" id="input-current" placeholder="">
+            <input class="input" type="number" id="input-current" placeholder="">
+
             <p>Total Debt (Short Term + LT Debt)</p>
-            <input type="number" id="input-debt" placeholder="">
+            <input class="input" type="number" id="input-debt" placeholder="">
+
             <p>Cash and Short Term Investment</p>
-            <input type="number" id="input-cash" placeholder="">
+            <input class="input" type="number" id="input-cash" placeholder="">
+
             <p>Cash flow growth rate (Yr 1-3)</p>
-            <input type="number" id="input-growth-1" placeholder="">
+            <input class="input" type="number" id="input-growth-1" placeholder="">
+
             <p>Cash flow growth rate (Yr 4-10)</p>
-            <input type="number" id="input-growth-2" placeholder="">
+            <input class="input" type="number" id="input-growth-2" placeholder="">
+
             <p>No. of Shares Outstanding</p>
-            <input type="number" id="input-share" placeholder="">
+            <input class="input" type="number" id="input-share" placeholder="">
+
             <p>PV of 10 Yr Cash Flows</p>
             <output>
                 <div id="result-pv"></div>
             </output>
+
             <p>Intrinsic Value before cash/debt</p>
             <output>
                 <div id="result-value"></div>
             </output>
+
             <p>Less Debt per Share</p>
             <output>
                 <div id="result-less"></div>
             </output>
+
             <p>Plus (+) Cash Per Share</p>
             <output>
                 <div id="result-plus"></div>
             </output>
+
             <p>Final Intrinsic Value Per Share</p>
             <output>
                 <div id="result-final"></div>
             </output> 
+
             <p>Current Year</p>
             <input type="number" id="" placeholder="">
             <p>Discount Rate (Beta)</p>
-            <input type="number">
+            <input type="number" id ='input-discount'>
                         
         </div>
         <div class="table">
