@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>Intrinsic Value Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="index.js" charset="utf-8" defer></script>
+    <h1>Intrinsic Value Calculator (Discounted Cash Flow Method 10 Years)</h1>
+    <h2>(Be consistent with the denomination used. Usually Millions $)</h2>
+</head>
+
+<body>
+    <nav>
+    </nav>
+    <div class="body-container">
+        <div class="body-instruction">
+          <p>KEY IN THE VALUE</p> 
+        </div>
+        <div class="body-calculator">
+            <p>Name of Stock</p>
+            <input type="text", id="input-name" placeholder="">
+            <p>Stock Symbol</p>
+            <input type="text" id="input-symbol" placeholder="">
+            <p>Operating CashFlow (Current)</p>
+            <input type="text" id="input-current" placeholder="">
+            <p>Total Debt (Short Term + LT Debt)</p>
+            <input type="number" id="input-debt" placeholder="">
+            <p>Cash and Short Term Investment</p>
+            <input type="number" id="input-cash" placeholder="">
+            <p>Cash flow growth rate (Yr 1-3)</p>
+            <input type="number" id="input-growth-1" placeholder="">
+            <p>Cash flow growth rate (Yr 4-10)</p>
+            <input type="number" id="input-growth-2" placeholder="">
+            <p>No. of Shares Outstanding</p>
+            <input type="number" id="input-share" placeholder="">
+            <p>PV of 10 Yr Cash Flows</p>
+            <output>
+                <div id="result-pv"></div>
+            </output>
+            <p>Intrinsic Value before cash/debt</p>
+            <output>
+                <div id="result-value"></div>
+            </output>
+            <p>Less Debt per Share</p>
+            <output>
+                <div id="result-less"></div>
+            </output>
+            <p>Plus (+) Cash Per Share</p>
+            <output>
+                <div id="result-plus"></div>
+            </output>
+            <p>Final Intrinsic Value Per Share</p>
+            <output>
+                <div id="result-final"></div>
+            </output> 
+            <p>Current Year</p>
+            <input type="number" id="" placeholder="">
+            <p>Discount Rate (Beta)</p>
+            <input type="number">
+                        
+        </div>
+        <div class="table">
+
+        </div>
+
+        <div class="graph"> 
+
+        </div>
+               
+    </div>
+
+
+</body>
+
+</html>

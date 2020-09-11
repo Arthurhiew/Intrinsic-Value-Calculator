@@ -1,0 +1,19 @@
+//Discount rate
+
+// function getValue(inputID){
+//     var input = documet.getElemetByID(inputID)
+//     return input
+// }
+
+
+
+// function getPV(current_cashflow, growth_rate_1, growth_rate_2){
+
+// }
+
+
+
+var update = document.getElementById("input-name")
+update.addEventListener("keyup",function(event){
+    console.log(event)
+})
